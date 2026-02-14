@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>House Price Prediction</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family: Arial, sans-serif;
+}
+
+body{
+    min-height:100vh;
+    background: url("https://images.unsplash.com/photo-1600585154340-be6161a56a0c") no-repeat center center;
+    background-size:cover;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.container{
+    background: rgba(0,0,0,0.7);
+    padding:30px;
+    border-radius:15px;
+    width:750px;
+    color:white;
+}
+
+.container h2{
+    text-align:center;
+    margin-bottom:20px;
+}
+
+input{
+    width:100%;
+    padding:8px;
+    margin:8px 0;
+    border:none;
+    border-radius:5px;
+    vertical-align: middle;
+    margin-top: 0;
+} 
+select{
+    width:10%;
+    padding:8px;
+    margin:1px 0;
+    border:none;
+    border-radius:5px;
+}
+
+.radio-group{
+    margin:5px 0;
+}
+
+.radio-group label{
+   display: flex;
+   align-items: center;
+   gap: 6px;
+
+}
+
+.radio-group{
+    display: grid;
+    grid-template-columns: 180px 60px 60px;
+    gap: 90px;
+    align-items: center;
+    margin: 6px 0;
+}
+
+button{
+    width:100%;
+    padding:10px;
+    background:#b8880f;
+    border:none;
+    border-radius:5px;
+    color:white;
+    font-size:16px;
+    cursor:pointer;
+    margin-top:1px;
+}
+
+button:hover{
+    background:#009624;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+<h2>House Price Prediction</h2>
+
+<form action="/predict" method="post">
+
+<input type="number" placeholder="Area (sq ft)" name="area" min="50" required>
+
+<input type="number" placeholder="Bedrooms" name ="bedrooms" min="1" required>
+
+<input type="number" placeholder="Bathrooms" name ="bathrooms" min="1" required>
+
+<input type="number" placeholder="Stories (Floors)" name ="stories" min="1" required>
+
+<input type="number" placeholder="Parking Spaces" name ="parking" min="1" required>
+
+<div class="radio-group">
+    <label>Main Road:</label>
+<label><input type="radio" name="mainroad" value="1"> Yes</label>
+<label><input type="radio" name="mainroad" value="0"> No</label>
+</div>
+
+
+<div class="radio-group">
+    <label>Guest Room:</label>
+<label><input type="radio" name="guestroom" value="1"> Yes</label>
+<label><input type="radio" name="guestroom" value="0"> No</label>
+</div>
+
+
+<div class="radio-group">
+    <label>Basement:</label>
+<label><input type="radio" name="basement" value="1"> Yes</label>
+<label><input type="radio" name="basement" value="0"> No</label>
+</div>
+
+
+<div class="radio-group">
+    <label>Hot Water Heating:</label>
+<label><input type="radio" name="hotwater" value="1"> Yes</label>
+<label><input type="radio" name="hotwater" value="0"> No</label>
+</div>
+
+
+<div class="radio-group">
+    <label>Air Conditioning:</label>
+<label><input type="radio" name="ac" value="1"> Yes</label>
+<label><input type="radio" name="ac" value="0"> No</label>
+</div>
+
+
+<div class="radio-group">
+    <label>Preferred Area:</label>
+<label><input type="radio" name="prefarea" value="1"> Yes</label>
+<label><input type="radio" name="prefarea" value="0"> No</label>
+</div><br><br>
+
+<button type="submit">Predict Price</button>
+{% if prediction_text %}
+<div class="result-box" style="margin-top: 15px;
+padding: 10px;
+
+color: aliceblue;
+text-align: center;
+border-radius: 8px;
+font-weight: bold;">
+{{prediction_text}}
+</div>
+{% endif %}
+
+</form>
+
+</div>
+
+</body>
+</html>
