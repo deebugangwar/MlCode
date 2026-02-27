@@ -9,7 +9,6 @@ app.secret_key = "supersecretkey123"
 
 DATABASE = "users.db"
 
-# ================= DATABASE INIT =================
 
 def init_db():
     conn = sqlite3.connect(DATABASE)
@@ -36,13 +35,13 @@ def init_db():
     conn.commit()
     conn.close()
 
-# ================= HOME =================
+
 
 @app.route("/")
 def home():
     return render_template("login.html")
 
-# ================= LOGIN =================
+
 
 @app.route("/login", methods=["POST"])
 def login():
@@ -76,7 +75,7 @@ def login():
 
     return jsonify({"error": "Invalid ID, Name or Password"})
 
-# ================= DASHBOARDS =================
+
 
 @app.route("/admin_dashboard")
 def admin_dashboard():
@@ -96,20 +95,20 @@ def student_dashboard():
         return "Unauthorized Access"
     return "<h2>Welcome Student</h2><a href='/logout'>Logout</a>"
 
-# ================= LOGOUT =================
+
 
 @app.route("/logout")
 def logout():
     session.clear()
     return render_template("login.html")
 
-# ================= FORGOT PASSWORD PAGE =================
+
 
 @app.route("/forgot_page")
 def forgot_page():
     return render_template("forgot.html")
 
-# ================= SEND OTP =================
+
 
 @app.route("/send_otp", methods=["POST"])
 def send_otp():
@@ -126,7 +125,6 @@ def send_otp():
 
     return jsonify({"message": "OTP Sent Successfully"})
 
-# ================= VERIFY OTP =================
 
 @app.route("/verify_otp", methods=["POST"])
 def verify_otp():
@@ -173,4 +171,5 @@ def reset_password():
 
 if __name__ == "__main__":
     init_db()
+
     app.run(debug=True)
