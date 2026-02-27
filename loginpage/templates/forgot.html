@@ -123,7 +123,7 @@ button{
 
 let countdown;
 
-// ================= SEND OTP =================
+
 function sendOTP(){
 
     let contact = document.getElementById("contact").value;
@@ -143,17 +143,16 @@ function sendOTP(){
 
         document.getElementById("message").innerText=data.message;
 
-        // Hide Step1
+        
         document.getElementById("step1").style.display="none";
 
-        // Show Step2
+    
         document.getElementById("step2").style.display="block";
 
         startTimer();
     });
 }
 
-// ================= TIMER =================
 function startTimer(){
 
     let timeLeft = 30;
@@ -174,7 +173,7 @@ function startTimer(){
     },1000);
 }
 
-// ================= VERIFY OTP =================
+
 function verifyOTP(){
 
     let otp = document.getElementById("otp").value;
@@ -196,10 +195,10 @@ function verifyOTP(){
 
             clearInterval(countdown);
 
-            // Hide OTP Section
+            
             document.getElementById("step2").style.display="none";
 
-            // Show Password Section
+        
             document.getElementById("step3").style.display="block";
 
             document.getElementById("message").innerText =
@@ -215,7 +214,7 @@ function verifyOTP(){
     });
 }
 
-// ================= PASSWORD STRENGTH =================
+
 function checkStrength(){
 
     let pass = document.getElementById("newpass").value;
@@ -235,7 +234,6 @@ function checkStrength(){
     }
 }
 
-// ================= SHOW / HIDE PASSWORD =================
 function togglePassword(){
 
     let p1 = document.getElementById("newpass");
@@ -251,7 +249,6 @@ function togglePassword(){
     }
 }
 
-// ================= RESET PASSWORD =================
 function resetPassword(){
 
     let newpass = document.getElementById("newpass").value;
@@ -285,4 +282,5 @@ function resetPassword(){
 </script>
 
 </body>
+
 </html>
