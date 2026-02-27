@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Fee Details</title>
+
+<style>
+body{
+    margin:0;
+    font-family:Segoe UI;
+    background:#f4f6f9;
+}
+
+/* HEADER */
+.header{
+    height:60px;
+    background:#1e3a8a;
+    color:white;
+    display:flex;
+    align-items:center;
+    justify-content:flex-end;
+    padding-right:30px;
+    font-weight:bold;
+}
+
+/* SIDEBAR */
+.sidebar{
+    position:fixed;
+    top:60px;
+    left:0;
+    width:230px;
+    height:100%;
+    background:#0f172a;
+}
+
+.sidebar a{
+    display:block;
+    padding:14px 20px;
+    color:white;
+    text-decoration:none;
+}
+
+.sidebar a:hover{
+    background:#1e293b;
+}
+
+/* MAIN */
+.main{
+    margin-left:230px;
+    margin-top:60px;
+    padding:20px;
+}
+
+/* TITLE BAR */
+.title-bar{
+    background:#d32f2f;
+    color:white;
+    padding:12px 20px;
+    font-size:18px;
+    font-weight:bold;
+    margin-bottom:15px;
+}
+
+/* GRID */
+.grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:15px;
+}
+
+/* BOX */
+.box{
+    background:white;
+    border-radius:6px;
+    box-shadow:0 3px 8px rgba(0,0,0,0.1);
+    overflow:hidden;
+}
+
+/* BOX HEADER */
+.box-header{
+    background:#156082;
+    color:white;
+    padding:10px;
+    text-align:center;
+    font-weight:bold;
+}
+
+/* TABLE */
+.table-container{
+    max-height:220px;
+    overflow-y:auto;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+th{
+    background:#e04855;
+    color:white;
+    padding:8px;
+    font-size:13px;
+}
+
+td{
+    padding:8px;
+    border-bottom:1px solid #ddd;
+    font-size:13px;
+    text-align:center;
+}
+
+tr:nth-child(even){
+    background:#f2f2f2;
+}
+
+/* PAY BUTTON */
+.pay-btn{
+    background:#0ea5e9;
+    color:white;
+    padding:8px 18px;
+    border:none;
+    border-radius:20px;
+    cursor:pointer;
+    margin:15px;
+}
+
+.pay-btn:hover{
+    background:#0284c7;
+}
+</style>
+</head>
+
+<body>
+ <div class="sidebar">
+    <h2>Student Panel</h2>
+    <ul>
+        <li><a href="index.html" style="text-decoration: none;">Dashboard</a></li>
+        <li><a href="profile.html" style="text-decoration: none;">My Profile</a></li>
+        <li><a href="attendance.html" style="text-decoration: none;">Attendance</a></li>
+        <li><a href="fees.html" style="text-decoration: none;">Fees</a></li>
+        <li><a href="results.html" style="text-decoration: none;">Results</a></li>
+        <li><a href="subjects.html" style="text-decoration: none;">Subjects</a></li>
+        <li><a href="timetable.html" style="text-decoration: none;">Time Table</a></li>
+        <li><a href="assignments.html" style="text-decoration: none;">Assignments</a></li>
+        <li><a href="notices.html" style="text-decoration: none;">Notice Board</a></li>
+        <li><a href="leave.html">Leave Application</a></li>
+    </ul>
+</div>
+
+<div class="header">
+My Home Page | Fees
+</div>
+
+
+<div class="main">
+
+<div class="title-bar">Fee Details</div>
+
+<div class="grid">
+
+<!-- Total Fee -->
+<div class="box">
+<div class="box-header">Total Fee</div>
+<div class="table-container">
+<table>
+<tr><th>Year</th><th>Date</th><th>Description</th><th>Sem</th><th>Amount</th></tr>
+<tr><td>24-25</td><td>19-Jul-2024</td><td>Institute Fee</td><td>I</td><td>100000</td></tr>
+<tr><td>24-25</td><td>19-Jul-2024</td><td>Exam Fee</td><td>I</td><td>5000</td></tr>
+<tr><td>25-26</td><td>15-Jul-2025</td><td>Institute Fee</td><td>III</td><td>100000</td></tr>
+</table>
+</div>
+</div>
+
+<!-- Payment Details -->
+<div class="box">
+<div class="box-header">Payment Details</div>
+<div class="table-container">
+<table>
+<tr><th>Year</th><th>Paid Date</th><th>Sem</th><th>Amount</th><th>Print</th></tr>
+<tr><td>24-25</td><td>19-Jul-2024</td><td>I</td><td>20000</td><td>🖨</td></tr>
+<tr><td>24-25</td><td>16-Aug-2024</td><td>I</td><td>1700</td><td>🖨</td></tr>
+<tr><td>25-26</td><td>01-Sep-2025</td><td>IV</td><td>12000</td><td>🖨</td></tr>
+</table>
+</div>
+</div>
+
+<!-- Unpaid Fee -->
+<div class="box">
+<div class="box-header">Unpaid Fee</div>
+<div class="table-container">
+<table>
+<tr><th>Description</th><th>Sem</th><th>Amount</th><th>Select</th></tr>
+<tr>
+<td>Institute Fee</td>
+<td>III</td>
+<td>30000</td>
+<td><input type="checkbox"></td>
+</tr>
+</table>
+</div>
+<button class="pay-btn">Pay Now</button>
+</div>
+
+<!-- Other Transactions -->
+<div class="box">
+<div class="box-header">Other Transactions</div>
+<div class="table-container">
+<table>
+<tr><th>Date</th><th>Description</th><th>Debit</th><th>Credit</th></tr>
+<tr>
+<td>19-Jul-2024</td>
+<td>Discount in Tuition</td>
+<td>0</td>
+<td>18000</td>
+</tr>
+</table>
+</div>
+</div>
+
+</div>
+</div>
+
+</body>
+</html>

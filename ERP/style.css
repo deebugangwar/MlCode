@@ -1,0 +1,97 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    display: flex;
+    background-color: #f4f6f9;
+}
+
+.sidebar {
+    width: 250px;
+    height: 100vh;
+    background-color: #1e293b;
+    color: white;
+    padding: 20px;
+    position: fixed;
+}
+
+.sidebar h2 {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.sidebar ul {
+    list-style: none;
+    
+}
+
+.sidebar ul li {
+    padding: 12px;
+    margin: 8px 0;
+    border-radius: 5px;
+    
+}
+
+.sidebar ul li a {
+    text-decoration: none;
+    color: white;
+    
+}
+
+.sidebar ul li:hover {
+    background-color: #334155;
+}
+
+.main-content {
+    margin-left: 250px;
+    padding: 20px;
+    width: 100%;
+    
+}
+
+.section {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 2px 8px rgba(0,0,0,0.1);
+   
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+table, th, td {
+    border: 1px solid #ddd;
+}
+
+th, td {
+    padding: 10px;
+    text-align: center;
+}
+
+th {
+    background-color: #1e293b;
+    color: white;
+}
+
+input, select, textarea {
+    padding: 8px;
+    width: 100%;
+    margin: 8px 0;
+}
+
+button {
+    padding: 10px;
+    background: #2563eb;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}

@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Student Profile</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:"Segoe UI", Arial, sans-serif;
+}
+
+body{
+    display:flex;
+    background:#f1f5f9;
+}
+
+/* ===== Sidebar ===== */
+.sidebar{
+    width:260px;
+    height:100vh;
+    background:#0f172a;
+    color:white;
+    padding:25px;
+    position:fixed;
+}
+
+.sidebar h2{
+    text-align:center;
+    margin-bottom:35px;
+}
+
+.sidebar ul{
+    list-style:none;
+}
+
+.sidebar ul li{
+    padding:14px;
+    margin:8px 0;
+    border-radius:8px;
+}
+
+.sidebar ul li a{
+    color:white;
+    text-decoration:none;
+    display:block;
+}
+
+.sidebar ul li:hover{
+    background:#1e293b;
+}
+
+/* ===== Main Content ===== */
+.main{
+    margin-left:260px;
+    padding:30px;
+    width:100%;
+}
+
+/* Profile Container */
+.container{
+    background:white;
+    padding:25px;
+    border-radius:10px;
+    box-shadow:0 4px 12px rgba(0,0,0,0.08);
+}
+
+/* Section Title */
+.section-title{
+    background:#1e3a8a;
+    color:white;
+    padding:10px;
+    margin:20px 0 15px 0;
+    border-radius:5px;
+    font-weight:bold;
+    
+}
+
+/* Grid Layout */
+.profile-grid{
+    display:grid;
+    grid-template-columns: 1fr 2fr 1fr 2fr;
+    gap:10px 20px;
+}
+
+/* Label & Value */
+.label{
+    font-weight:bold;
+    color:#1e293b;
+}
+
+.value{
+    background:#f8fafc;
+    padding:6px 8px;
+    border-radius:4px;
+}
+
+/* Photo Section */
+.photo-box{
+    text-align:center;
+    margin-bottom:25px;
+}
+
+.photo-box img{
+    width:150px;
+    height:150px;
+    border-radius:8px;
+    border:3px solid #1e3a8a;
+    object-fit:cover;
+}
+
+.upload{
+    margin-top:8px;
+}
+</style>
+</head>
+
+<body>
+
+<!-- ===== Sidebar ===== -->
+<div class="sidebar">
+    <h2>Student ERP</h2>
+    <ul>
+        <li><a href="index.html">Dashboard</a></li>
+        <li><a href="#">My Profile</a></li>
+        <li><a href="#">Attendance</a></li>
+        <li><a href="#">Fees</a></li>
+        <li><a href="#">Results</a></li>
+        <li><a href="#">Subjects</a></li>
+        <li><a href="#">Time Table</a></li>
+        <li><a href="#">Assignments</a></li>
+        <li><a href="#">Notice Board</a></li>
+        <li><a href="#">Logout</a></li>
+    </ul>
+</div>
+  
+
+<!-- ===== Main ===== -->
+<div class="main">
+
+<div class="container">
+ <div class="section-title" style="text-align: center; background-color: orangered; width: 100px;"  >Profile </div>
+    <!-- Photo -->
+    <div class="photo-box">
+        <img src="member1.jpeg" alt="Profile Photo" style="border-radius: 100px;">
+        <div class="upload">
+            <input type="file">
+        </div>
+    </div>
+
+    <!-- Admission Details -->
+    <div class="section-title">Admission Details</div>
+
+    <div class="profile-grid">
+        <div class="label">Student ID</div>
+        <div class="value">ESC3072456</div>
+
+        <div class="label">Roll Number</div>
+        <div class="value">21CSE045</div>
+
+        <div class="label">Name</div>
+        <div class="value">Deebu Gangwar</div>
+
+        <div class="label">Program</div>
+        <div class="value">B.Tech (Computer Science)</div>
+
+        <div class="label">Date of Birth</div>
+        <div class="value">15 August 2005</div>
+
+        <div class="label">Mobile</div>
+        <div class="value">9876543210</div>
+
+        <div class="label">Email</div>
+        <div class="value">deebu@email.com</div>
+
+        <div class="label">Category</div>
+        <div class="value">General</div>
+
+        <div class="label">Gender</div>
+        <div class="value">Male</div>
+
+        <div class="label">Religion</div>
+        <div class="value">Hindu</div>
+
+        <div class="label">Domicile State</div>
+        <div class="value">Uttar Pradesh</div>
+
+        <div class="label">Admission Year</div>
+        <div class="value">2023</div>
+    </div>
+
+    <!-- Academic Details -->
+    <div class="section-title">Academic Details</div>
+
+    <div class="profile-grid">
+        <div class="label">University</div>
+        <div class="value">AKTU</div>
+
+        <div class="label">College</div>
+        <div class="value">XYZ Institute of Technology</div>
+
+        <div class="label">Semester</div>
+        <div class="value">4</div>
+
+        <div class="label">Enrollment No</div>
+        <div class="value">AKTU2023CSE045</div>
+
+        <div class="label">Academic Year</div>
+        <div class="value">2025-26</div>
+
+        <div class="label">Section</div>
+        <div class="value">CSE-A</div>
+    </div>
+
+</div>
+
+</div>
+
+</body>
+</html>
