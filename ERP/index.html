@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Student ERP Dashboard</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family: "Segoe UI", Arial, sans-serif;
+}
+
+body{
+    display:flex;
+    background:#f1f5f9;
+}
+
+/* ===== Sidebar ===== */
+.sidebar{
+    width:260px;
+    height:100vh;
+    background:#0f172a;
+    color:white;
+    padding:25px;
+    position:fixed;
+}
+
+.sidebar h2{
+    text-align:center;
+    margin-bottom:35px;
+    letter-spacing:1px;
+}
+
+.sidebar ul{
+    list-style:none;
+}
+
+.sidebar ul li{
+    padding:14px;
+    margin:8px 0;
+    border-radius:8px;
+}
+
+.sidebar ul li a{
+    color:white;
+    text-decoration:none;
+    display:block;
+}
+
+.sidebar ul li:hover{
+    background:#1e293b;
+}
+
+/* ===== Main ===== */
+.main{
+    margin-left:260px;
+    padding:25px;
+    width:100%;
+}
+
+/* ===== Header ===== */
+.header{
+    background:white;
+    padding:20px;
+    border-radius:12px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    box-shadow:0 4px 12px rgba(0,0,0,0.08);
+}
+
+.header h2{
+    color:#0f172a;
+}
+
+.header span{
+    color:#64748b;
+}
+
+/* ===== Cards ===== */
+.cards{
+    margin-top:25px;
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:20px;
+}
+
+.card{
+    background:white;
+    padding:25px;
+    border-radius:14px;
+    box-shadow:0 4px 12px rgba(0,0,0,0.08);
+    text-align:center;
+}
+
+.card h3{
+    color:#475569;
+    font-size:16px;
+    margin-bottom:10px;
+}
+
+.card p{
+    font-size:26px;
+    font-weight:bold;
+    color:#0f172a;
+}
+
+/* ===== Sections ===== */
+.section{
+    background:white;
+    margin-top:30px;
+    padding:25px;
+    border-radius:14px;
+    box-shadow:0 4px 12px rgba(0,0,0,0.08);
+}
+
+.section h3{
+    margin-bottom:15px;
+    color:#0f172a;
+}
+
+/* ===== Table ===== */
+table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+th,td{
+    padding:12px;
+    border-bottom:1px solid #e2e8f0;
+    text-align:center;
+}
+
+th{
+    background:#0f172a;
+    color:white;
+}
+
+.status-good{
+    color:green;
+    font-weight:bold;
+}
+
+.status-pending{
+    color:#dc2626;
+    font-weight:bold;
+}
+
+/* ===== Notices ===== */
+.notice{
+    padding:12px;
+    border-left:5px solid #2563eb;
+    background:#eff6ff;
+    margin-bottom:10px;
+    border-radius:6px;
+}
+</style>
+</head>
+
+<body>
+
+<!-- ===== Sidebar ===== -->
+ <div class="sidebar">
+    <h2>Student Panel</h2>
+    <ul>
+        <li><a href="dashboard.html" style="text-decoration: none;">Dashboard</a></li>
+        <li><a href="profile.html" style="text-decoration: none;">My Profile</a></li>
+        <li><a href="attendance.html" style="text-decoration: none;">Attendance</a></li>
+        <li><a href="fees.html" style="text-decoration: none;">Fees</a></li>
+        <li><a href="results.html" style="text-decoration: none;">Results</a></li>
+        <li><a href="subjects.html" style="text-decoration: none;">Subjects</a></li>
+        <li><a href="timetable.html" style="text-decoration: none;">Time Table</a></li>
+        <li><a href="assignments.html" style="text-decoration: none;">Assignments</a></li>
+        <li><a href="notices.html" style="text-decoration: none;">Notice Board</a></li>
+        <li><a href="leave.html">Leave Application</a></li>
+    </ul>
+</div>
+
+<!-- ===== Main Content ===== -->
+<div class="main">
+
+    <!-- Header -->
+
+  
+    <div class="header">
+        <div>
+            <h2>Deebu Gangwar</h2>
+            <span> B.Tech CSE | Semester 4</span>
+        </div>
+        <div>
+            <strong>Roll No:</strong> 21CSE045
+        </div>
+    </div>
+
+    <!-- Cards -->
+    <div class="cards">
+        <div class="card">
+            <h3>Overall Attendance</h3>
+            <p>85%</p>
+        </div>
+
+        <div class="card">
+            <h3>Current SGPA</h3>
+            <p>8.2</p>
+        </div>
+
+        <div class="card">
+            <h3>Fees Pending</h3>
+            <p>₹20,000</p>
+        </div>
+
+        <div class="card">
+            <h3>Assignments Due</h3>
+            <p>2</p>
+        </div>
+    </div>
+
+    <!-- Attendance Summary -->
+    <div class="section">
+        <h3>Attendance Summary</h3>
+        <table>
+            <tr>
+                <th>Subject</th>
+                <th>Total Classes</th>
+                <th>Present</th>
+                <th>Status</th>
+            </tr>
+            <tr>
+                <td>DBMS</td>
+                <td>40</td>
+                <td>34</td>
+                <td class="status-good">Good</td>
+            </tr>
+            <tr>
+                <td>Operating System</td>
+                <td>38</td>
+                <td>28</td>
+                <td class="status-pending">Low</td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- Notices -->
+    <div class="section">
+        <h3>Latest Notices</h3>
+        <div class="notice">Mid-Semester Exams start from 10 March</div>
+        <div class="notice">Hackathon registration open till 5 March</div>
+        <div class="notice">Fee submission last date: 28 February</div>
+    </div>
+
+</div>
+
+</body>
+</html>
