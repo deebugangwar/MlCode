@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Reset Password</title>
+
+<style>
+body {
+    margin:0;
+    font-family:'Segoe UI';
+    background:linear-gradient(-45deg,#1d2671,#c33764,#1e3c72,#2a5298);
+    background-size:400% 400%;
+    animation:gradientBG 10s ease infinite;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+}
+
+@keyframes gradientBG {
+    0%{background-position:0% 50%;}
+    50%{background-position:100% 50%;}
+    100%{background-position:0% 50%;}
+}
+
+.card{
+    background:rgba(255,255,255,0.15);
+    backdrop-filter:blur(15px);
+    padding:40px;
+    width:380px;
+    border-radius:20px;
+    text-align:center;
+    color:white;
+}
+
+input{
+    width:100%;
+    padding:12px;
+    margin:10px 0;
+    border-radius:8px;
+    border:none;
+    outline:none;
+}
+
+
+
+button{
+    width:100%;
+    padding:12px;
+    border:none;
+    border-radius:8px;
+    font-weight:bold;
+    cursor:pointer;
+    margin-top:10px;
+}
+
+.strength{
+    font-size:12px;
+    text-align:left;
+}
+
+</style>
+</head>
+<body>
+
+<div class="card">
+
+<h2>Reset Password</h2>
+
+<div id="step1">
+    <input type="text" id="contact" placeholder="Enter Email / Mobile No.">
+    <button onclick="sendOTP()">Send OTP</button>
+
+
+  <div id="back"> 
+     <button style=" width:30%;
+    padding:10px;
+    border:none;
+    border-radius:8px;
+    font-weight:bold;
+    cursor:pointer;
+    margin-top:30px;
+"><a href="login.html">Back</a></button>
+</div>
+
+
+
+</div>
+
+<div id="step2" style="display:none;">
+    <input type="text" id="otp" placeholder="Enter OTP">
+    <p id="timer"></p>
+    <button onclick="verifyOTP()">Verify OTP</button>
+    <button onclick="sendOTP()">Resend OTP</button>
+    
+  <div id="back"> 
+     <button style=" width:30%;
+    padding:10px;
+    border:none;
+    border-radius:8px;
+    font-weight:bold;
+    cursor:pointer;
+    margin-top:30px;
+"><a href="login.html">Back</a></button>
+</div>
+    
+</div>
+
+<div id="step3" style="display:none;">
+    <input type="password" id="newpass" placeholder="New Password" onkeyup="checkStrength()">
+    <div class="strength" id="strength"></div>
+
+    <input type="password" id="confirmpass" placeholder="Confirm Password">
+    <input type="checkbox" onclick="togglePassword()"> Show Password
+
+    <button onclick="resetPassword()">Confirm</button>
+</div>
+
+<p id="message"></p>
+
+</div>
+
+<script>
+
+let countdown;
+
+// ================= SEND OTP =================
+function sendOTP(){
+
+    let contact = document.getElementById("contact").value;
+
+    if(contact == ""){
+        alert("Please enter your Name");
+        return;
+    }
+
+    fetch("/send_otp",{
+        method:"POST",
+        headers:{"Content-Type":"application/x-www-form-urlencoded"},
+        body:"contact="+contact
+    })
+    .then(res=>res.json())
+    .then(data=>{
+
+        document.getElementById("message").innerText=data.message;
+
+        // Hide Step1
+        document.getElementById("step1").style.display="none";
+
+        // Show Step2
+        document.getElementById("step2").style.display="block";
+
+        startTimer();
+    });
+}
+
+// ================= TIMER =================
+function startTimer(){
+
+    let timeLeft = 30;
+    clearInterval(countdown);
+
+    countdown = setInterval(()=>{
+        document.getElementById("timer").innerText =
+            "OTP expires in " + timeLeft + " sec";
+
+        timeLeft--;
+
+        if(timeLeft < 0){
+            clearInterval(countdown);
+            document.getElementById("timer").innerText =
+                "OTP Expired";
+        }
+
+    },1000);
+}
+
+// ================= VERIFY OTP =================
+function verifyOTP(){
+
+    let otp = document.getElementById("otp").value;
+
+    if(otp == ""){
+        alert("Enter OTP first");
+        return;
+    }
+
+    fetch("/verify_otp",{
+        method:"POST",
+        headers:{"Content-Type":"application/x-www-form-urlencoded"},
+        body:"otp="+otp
+    })
+    .then(res=>res.json())
+    .then(data=>{
+
+        if(data.status=="success"){
+
+            clearInterval(countdown);
+
+            // Hide OTP Section
+            document.getElementById("step2").style.display="none";
+
+            // Show Password Section
+            document.getElementById("step3").style.display="block";
+
+            document.getElementById("message").innerText =
+                "OTP Verified Successfully";
+
+        }
+        else if(data.status=="expired"){
+            alert("OTP Expired. Please Resend.");
+        }
+        else{
+            alert("Wrong OTP");
+        }
+    });
+}
+
+// ================= PASSWORD STRENGTH =================
+function checkStrength(){
+
+    let pass = document.getElementById("newpass").value;
+    let strength = document.getElementById("strength");
+
+    if(pass.length < 4){
+        strength.innerText = "Weak Password";
+        strength.style.color = "red";
+    }
+    else if(pass.length < 8){
+        strength.innerText = "Medium Password";
+        strength.style.color = "orange";
+    }
+    else{
+        strength.innerText = "Strong Password";
+        strength.style.color = "lightgreen";
+    }
+}
+
+// ================= SHOW / HIDE PASSWORD =================
+function togglePassword(){
+
+    let p1 = document.getElementById("newpass");
+    let p2 = document.getElementById("confirmpass");
+
+    if(p1.type === "password"){
+        p1.type = "text";
+        p2.type = "text";
+    }
+    else{
+        p1.type = "password";
+        p2.type = "password";
+    }
+}
+
+// ================= RESET PASSWORD =================
+function resetPassword(){
+
+    let newpass = document.getElementById("newpass").value;
+    let confirmpass = document.getElementById("confirmpass").value;
+
+    if(newpass == "" || confirmpass == ""){
+        alert("Fill all fields");
+        return;
+    }
+
+    if(newpass !== confirmpass){
+        alert("Passwords do not match");
+        return;
+    }
+
+    fetch("/reset_password",{
+        method:"POST",
+        headers:{"Content-Type":"application/x-www-form-urlencoded"},
+        body:"new_password="+newpass
+    })
+    .then(res=>res.json())
+    .then(data=>{
+
+        alert(data.message);
+
+        // Redirect to Login
+        window.location.href="/";
+    });
+}
+
+</script>
+
+</body>
+</html>
