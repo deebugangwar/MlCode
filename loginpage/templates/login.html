@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ERP Login</title>
+
+<style>
+
+/* ===== Animated Gradient Background ===== */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(-45deg, #1d2671, #c33764, #1e3c72, #2a5298);
+    background-size: 400% 400%;
+    animation: gradientBG 10s ease infinite;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* Background Animation */
+@keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* ===== Card Style ===== */
+.login-card {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(15px);
+    padding: 40px;
+    width: 380px;
+    border-radius: 20px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+    text-align: center;
+    color: white;
+}
+
+/* Title */
+.login-card h2 {
+    margin-bottom: 25px;
+    font-weight: 600;
+}
+
+/* Inputs */
+.login-card input {
+    width: 100%;
+    padding: 12px;
+    margin: 12px 0;
+    border-radius: 8px;
+    border: none;
+    outline: none;
+    font-size: 14px;
+}
+
+/* Button */
+.login-card button {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    background: #ffffff;
+    color: #1e3c72;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+    margin-top: 20px;
+    margin-left: 10px;
+}
+
+.login-card button:hover {
+    background: #1e3c72;
+    color: white;
+}
+
+/* Forgot Password */
+.forgot {
+    margin-top: 15px;
+    font-size: 13px;
+    cursor: pointer;
+    color: #ffffff;
+    text-decoration: underline;
+}
+
+.forgot:hover {
+    color: #ffd700;
+}
+
+/* Message */
+#message {
+    margin-top: 15px;
+    font-size: 14px;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 500px) {
+    .login-card {
+        width: 90%;
+        padding: 30px;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="login-card">
+    <h2>ERP System Login</h2>
+
+    <form id="loginForm">
+        <input type="text" id="id" placeholder="Enter ID" required>
+        <input type="text" id="name" placeholder="Enter Name" required>
+        <input type="password" id="password" placeholder="Enter Password" required>
+
+        <button type="submit">Login</button>
+    </form>
+
+    <div class="forgot" onclick="forgotPassword()">
+       <a href="/forgot_page" style="color: blanchedalmond;">Forgot Password?</a>
+    </div>
+
+    
+</div>
+
+<script>
+
+/* Login */
+document.getElementById("loginForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    fetch("/login", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/x-www-form-urlencoded"
+        },
+        body: "id=" + document.getElementById("id").value +
+              "&name=" + document.getElementById("name").value +
+              "&password=" + document.getElementById("password").value
+    })
+    .then(response => response.json())
+    .then(data => {
+
+        if(data.redirect){
+            window.location.href = data.redirect;
+        } else {
+            document.getElementById("message").innerText = data.error;
+        }
+
+    });
+});
+
+
+
+
+</script>
+
+</body>
+</html>
